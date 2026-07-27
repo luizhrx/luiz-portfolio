@@ -1,0 +1,50 @@
+<section id="projetos" class="projetos">
+  <div class="projetos-inner">
+    <div class="projetos-head" data-reveal>
+      <span class="section-eyebrow mono">// 02 — projetos em destaque</span>
+      <h2 class="section-title heading">Cada projeto, documentado<br>como um endpoint.</h2>
+    </div>
+
+    <!-- COREX -->
+    <article class="project" data-reveal>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-endpoint mono">GET /projetos/corex-ecommerce</span>
+          <h3 class="project-title heading">COREX — E-commerce de Hardware Gamer</h3>
+        </div>
+        <div class="project-body">
+          <p><span class="project-label">PROBLEMA</span>Oferecer uma plataforma de e-commerce completa para hardware e periféricos gamer — do catálogo de produtos ao checkout — com painel administrativo para gestão de produtos, categorias e pedidos.</p>
+          <p><span class="project-label">ARQUITETURA</span>Monorepo em três camadas: API REST em Spring Boot (autenticação, regras de negócio e persistência), SPA em React consumindo a API, e banco PostgreSQL.</p>
+          <p><span class="project-label">DECISÕES TÉCNICAS</span>Autenticação JWT com senhas em BCrypt e autorização por papéis (ADMIN/CLIENT), upload de imagens via Cloudinary, cálculo de frete com preenchimento automático de endereço por CEP, e ambiente containerizado com Docker Compose.</p>
+          <p><span class="project-label">RESULTADO</span>Carrinho persistente, ciclo completo de pedidos com rastreamento de status, painel admin para produtos/categorias/pedidos e deploy público com demo ao vivo.</p>
+        </div>
+        <div class="project-tags">
+          <span class="project-tag">Java 21</span>
+          <span class="project-tag">Spring Boot</span>
+          <span class="project-tag">PostgreSQL</span>
+          <span class="project-tag">React</span>
+          <span class="project-tag">TypeScript</span>
+          <span class="project-tag">Docker</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/luizhrx/e-commerce" target="_blank" rel="noopener" class="project-link-main">Repo ↗</a>
+          <a href="https://e-commerce-corex3.vercel.app" target="_blank" rel="noopener" class="project-link-main">Demo ↗</a>
+        </div>
+      </div>
+      <div class="arch-diagram">
+        <div class="terminal-bar"><span>arquitetura — corex</span><span class="terminal-status">● API online</span></div>
+        <div class="arch-body">
+          <div class="arch-step"><strong>React SPA</strong><span>TypeScript · Tailwind CSS</span></div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step"><strong>REST Controllers</strong><span>Spring Security · JWT</span></div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step"><strong>Service Layer</strong><span>carrinho · pedidos · frete</span></div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step highlight"><strong>PostgreSQL</strong><span>produtos · pedidos · usuários</span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+
