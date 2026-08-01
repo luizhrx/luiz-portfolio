@@ -14,6 +14,7 @@
 html {
   background: var(--bg);
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -24,6 +25,11 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
+
+/* Trava anti-overflow: nada de mídia ou palavra longa estourando a viewport */
+img, video, canvas, iframe { max-width: 100%; height: auto; }
+svg { max-width: 100%; }
+p, h1, h2, h3, li { overflow-wrap: break-word; }
 
 a { color: var(--text); text-decoration: none; }
 a:hover { color: var(--accent); }
@@ -52,7 +58,11 @@ a:hover { color: var(--accent); }
 [data-reveal-group].is-visible > *:nth-child(4) { transition-delay: 210ms; }
 [data-reveal-group].is-visible > *:nth-child(5) { transition-delay: 280ms; }
 
-/* ===== Header / Navbar ===== */
+/* ===== Header / Navbar (mobile-first) =====
+   No mobile: logo + hamburger. Os links e o botão de currículo vivem
+   num painel dropdown. A partir de 768px o layout original em linha volta.
+   Antes desta refatoração a nav era uma única linha sem quebra: em 375px
+   o conteúdo se estendia até ~571px e o botão de currículo ficava fora da tela. */
 .site-header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -66,12 +76,12 @@ a:hover { color: var(--accent); }
 .nav {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
   height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
 }
 
 .nav-logo {
@@ -82,31 +92,115 @@ a:hover { color: var(--accent); }
   display: flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
+  min-width: 0;
 }
 .nav-logo span { color: var(--accent); }
 
-.nav-right { display: flex; align-items: center; gap: 32px; }
+/* Hamburger — alvo de toque de 44px, some no desktop */
+.nav-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  padding: 0;
+  flex-shrink: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.nav-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.nav-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms;
+}
+/* vira "X" quando aberto */
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Painel do menu no mobile */
+.nav-right {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 12px 20px 20px;
+  background: rgba(11, 13, 16, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+.nav-right.is-open { display: flex; }
 
 .nav-links {
   display: flex;
-  align-items: center;
-  gap: 24px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
 }
-.nav-links a { color: var(--text-muted); transition: color 200ms; }
+.nav-links a {
+  color: var(--text-muted);
+  transition: color 200ms;
+  padding: 12px 8px;
+  border-radius: 8px;
+}
 .nav-links a:hover { color: var(--accent); }
+.nav-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .btn-cv {
   background: var(--accent);
   color: var(--bg);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  padding: 8px 16px;
+  padding: 12px 16px;
   border-radius: 8px;
+  text-align: center;
+  white-space: nowrap;
   transition: transform 200ms, opacity 200ms;
 }
 .btn-cv:hover { transform: translateY(-2px); color: var(--bg); opacity: 0.92; }
+.btn-cv:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Desktop: restaura exatamente o header original em linha */
+@media (min-width: 768px) {
+  .nav { padding: 0 24px; gap: 24px; }
+  .nav-toggle { display: none; }
+  .nav-right {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    padding: 0;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  .nav-links { flex-direction: row; align-items: center; gap: 24px; font-size: 0.8125rem; }
+  .nav-links a { padding: 0; }
+  .btn-cv { font-size: 0.8125rem; padding: 8px 16px; }
+}
 
 /* ===== Hero ===== */
 .hero {
@@ -308,4 +402,50 @@ a:hover { color: var(--accent); }
 .footer-inner {
   max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
   font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-muted);
+}
+
+/* ===== Ajustes mobile (< 768px) =====
+   Só respiro e escala; a paleta, a tipografia e as animações do desktop
+   ficam intactas porque nada aqui vaza para acima do breakpoint. */
+@media (max-width: 767px) {
+  /* Hero: menos padding no topo (o header ocupa 64px) e empilhamento mais justo */
+  .hero { padding: 112px 20px 72px; }
+  .hero-inner { gap: 40px; }
+  .hero-subtitle { font-size: 1.1875rem; }
+  .hero-desc { font-size: 1rem; }
+  /* largura natural + wrap: evita um botão sozinho esticado na última linha */
+  .hero-ctas { gap: 12px; }
+  .btn-primary, .btn-outline { padding: 12px 20px; font-size: 0.875rem; }
+
+  /* Padding lateral consistente de 20px em todas as seções */
+  .metrics, .stack, .projetos, .sobre, .contato, .other-projects, .site-footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .stack, .projetos, .sobre, .contato, .other-projects { padding-top: 72px; padding-bottom: 72px; }
+
+  .metrics-inner { gap: 28px; padding: 36px 0; }
+  .section-title { font-size: 1.75rem; }
+  .stack-inner { gap: 32px; }
+
+  /* Projetos: uma coluna com respiro menor entre blocos */
+  .projetos-inner { gap: 56px; }
+  .project { gap: 32px; }
+  .project-title { font-size: 1.5rem; }
+  .project-links { gap: 16px; }
+  .terminal-body, .arch-body { padding: 20px 16px; }
+  .arch-step { padding: 12px 14px; }
+
+  /* Contato: botões dividem a linha em vez de estourar */
+  .contato-card { padding: 48px 20px; gap: 24px; }
+  .copy-email { font-size: 0.8125rem; padding: 12px 16px; gap: 10px; }
+  .contact-btns { gap: 12px; width: 100%; }
+  .contact-btn { flex: 1 1 140px; }
+}
+
+/* Telas muito estreitas (<= 360px) */
+@media (max-width: 360px) {
+  .hero-title { font-size: 2.375rem; }
+  .contact-btn { flex: 1 1 100%; }
+  .copy-email { flex-wrap: wrap; justify-content: center; }
 }
