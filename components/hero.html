@@ -2,7 +2,6 @@
   <div class="hero-inner">
 
     <div class="hero-text" data-reveal-group>
-      <div class="badge"><span class="dot"></span>disponível para estágio e júnior</div>
       <h1 class="hero-title heading">Luiz Henrique<span>.</span></h1>
       <p class="hero-subtitle">Java Software Developer, Spring Boot, SQL</p>
       <p class="hero-desc">Estudante de Ciência da Computação, com foco em desenvolvimento Backend, trazendo uma base sólida em lógica de programação, arquitetura em camadas e no ecossistema Java.</p>
@@ -38,20 +37,22 @@
 
 <section id="stack" class="stack">
   <div class="stack-inner">
-    <div class="stack-head" data-reveal>
-      <span class="section-eyebrow mono">// 01 — stack</span>
-      <h2 class="section-title heading">Organizada por camada,<br>não por nuvem de tags.</h2>
+    <!-- Overline + título, centralizados como na referência -->
+    <div class="stack-head items-center text-center" data-reveal>
+      <span class="font-mono text-xs font-medium uppercase tracking-[0.25em] text-[#FF5B29]">Stack</span>
+      <h2 class="section-title heading">Ferramentas do dia a dia</h2>
     </div>
-    <div class="flex flex-wrap gap-3" data-reveal-group>
-      <span class="font-mono text-sm px-4 py-2 rounded-lg bg-[#14181D] border border-[#22303D] text-[#F2F4F7] hover:border-[#FF5B29] transition-colors">Java</span>
-      <span class="font-mono text-sm px-4 py-2 rounded-lg bg-[#14181D] border border-[#22303D] text-[#F2F4F7] hover:border-[#FF5B29] transition-colors">Spring Boot</span>
-      <span class="font-mono text-sm px-4 py-2 rounded-lg bg-[#14181D] border border-[#22303D] text-[#F2F4F7] hover:border-[#FF5B29] transition-colors">Spring Security</span>
-      <span class="font-mono text-sm px-4 py-2 rounded-lg bg-[#14181D] border border-[#22303D] text-[#F2F4F7] hover:border-[#FF5B29] transition-colors">JPA/Hibernate</span>
-      <span class="font-mono text-sm px-4 py-2 rounded-lg bg-[#14181D] border border-[#22303D] text-[#F2F4F7] hover:border-[#FF5B29] transition-colors">SQL (MySQL, PostgreSQL)</span>
-      <span class="font-mono text-sm px-4 py-2 rounded-lg bg-[#14181D] border border-[#22303D] text-[#F2F4F7] hover:border-[#FF5B29] transition-colors">Git</span>
-      <span class="font-mono text-sm px-4 py-2 rounded-lg bg-[#14181D] border border-[#22303D] text-[#F2F4F7] hover:border-[#FF5B29] transition-colors">GitHub</span>
-      <span class="font-mono text-sm px-4 py-2 rounded-lg bg-[#14181D] border border-[#22303D] text-[#F2F4F7] hover:border-[#FF5B29] transition-colors">CI/CD</span>
-      <span class="font-mono text-sm px-4 py-2 rounded-lg bg-[#14181D] border border-[#22303D] text-[#F2F4F7] hover:border-[#FF5B29] transition-colors">Docker (básico)</span>
-    </div>
+
+    <!-- Badges em pílula: flex-wrap + justify-center garantem quebra de linha
+         e centralização no mobile, sem largura fixa que cause overflow -->
+    <ul class="flex flex-wrap justify-center gap-3 list-none m-0 p-0" data-reveal-group>
+      <li class="inline-flex items-center whitespace-nowrap rounded-full border border-[#22303D] bg-[#14181D] px-4 py-2 font-mono text-sm text-[#F2F4F7] transition-colors duration-200 hover:border-[#FF5B29] hover:bg-[#1B2128]">Java</li>
+      <li class="inline-flex items-center whitespace-nowrap rounded-full border border-[#22303D] bg-[#14181D] px-4 py-2 font-mono text-sm text-[#F2F4F7] transition-colors duration-200 hover:border-[#FF5B29] hover:bg-[#1B2128]">Spring Boot</li>
+      <li class="inline-flex items-center whitespace-nowrap rounded-full border border-[#22303D] bg-[#14181D] px-4 py-2 font-mono text-sm text-[#F2F4F7] transition-colors duration-200 hover:border-[#FF5B29] hover:bg-[#1B2128]">Python</li>
+      <li class="inline-flex items-center whitespace-nowrap rounded-full border border-[#22303D] bg-[#14181D] px-4 py-2 font-mono text-sm text-[#F2F4F7] transition-colors duration-200 hover:border-[#FF5B29] hover:bg-[#1B2128]">Docker</li>
+      <li class="inline-flex items-center whitespace-nowrap rounded-full border border-[#22303D] bg-[#14181D] px-4 py-2 font-mono text-sm text-[#F2F4F7] transition-colors duration-200 hover:border-[#FF5B29] hover:bg-[#1B2128]">PostgreSQL</li>
+      <li class="inline-flex items-center whitespace-nowrap rounded-full border border-[#22303D] bg-[#14181D] px-4 py-2 font-mono text-sm text-[#F2F4F7] transition-colors duration-200 hover:border-[#FF5B29] hover:bg-[#1B2128]">IntelliJ IDEA</li>
+      <li class="inline-flex items-center whitespace-nowrap rounded-full border border-[#22303D] bg-[#14181D] px-4 py-2 font-mono text-sm text-[#F2F4F7] transition-colors duration-200 hover:border-[#FF5B29] hover:bg-[#1B2128]">Git</li>
+    </ul>
   </div>
 </section>

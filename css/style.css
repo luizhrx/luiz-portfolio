@@ -57,6 +57,13 @@ a:hover { color: var(--accent); }
 [data-reveal-group].is-visible > *:nth-child(3) { transition-delay: 140ms; }
 [data-reveal-group].is-visible > *:nth-child(4) { transition-delay: 210ms; }
 [data-reveal-group].is-visible > *:nth-child(5) { transition-delay: 280ms; }
+/* 6–10: a nuvem de badges da Stack tem 10 itens; sem estes delays
+   os cinco ultimos apareciam todos de uma vez */
+[data-reveal-group].is-visible > *:nth-child(6) { transition-delay: 350ms; }
+[data-reveal-group].is-visible > *:nth-child(7) { transition-delay: 420ms; }
+[data-reveal-group].is-visible > *:nth-child(8) { transition-delay: 490ms; }
+[data-reveal-group].is-visible > *:nth-child(9) { transition-delay: 560ms; }
+[data-reveal-group].is-visible > *:nth-child(10) { transition-delay: 630ms; }
 
 /* ===== Header / Navbar (mobile-first) =====
    No mobile: logo + hamburger. Os links e o botão de currículo vivem
